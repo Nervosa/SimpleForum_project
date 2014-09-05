@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+        {{ topic_name }}
+
+{% endblock %}
+
+
+{% block main_content %}
+    <div class="container"  ng-controller="TopicController as topic" ng-init="get_topic_data({{ topic_id }})">
+        <div class="jumbotron">
+            {% verbatim %}
+                <h1>{{ topic_name }}</h1>
+                <p>{{ op_post }}</p>
+
+        </div>
+        <div class="jumbotron" ng-repeat='post in posts'>
+            <i>{{ post.author }} at {{ post.created_at | date:'yyyy-MM-dd HH:mm:ss' }} wrote({{ post.number_in_topic }}):</i>
+            <br/>
+            <br/>
+            {{ post.text }}
+        </div>
+        {% endverbatim %}
+        <div class="jumbotron" ng-show="user">
+            <form role="form" ng-submit="submit_post({{ topic_id }})">
+                <div class="form-group">
+                    <textarea class="form-control" ng-model="topic.new_post" placeholder="Enter text of your post here..."></textarea>
+                </div>
+                <input type="submit" value="Add post">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

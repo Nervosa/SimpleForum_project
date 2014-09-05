@@ -87,7 +87,9 @@ app.controller('TopicController', function($scope, $http){
                 // $scope.posts.push(post);
                 posts_arr.push(post);
                 }).finally(function(){
-                    posts_arr = posts_arr.sort(function(a,b) {return (a.number_in_topic > b.number_in_topic) ? 1 : ((b.number_in_topic > a.number_in_topic) ? -1 : 0);} );
+                    posts_arr = posts_arr.sort(function(a,b){
+                            return (a.number_in_topic > b.number_in_topic) ? 1 : ((b.number_in_topic > a.number_in_topic) ? -1 : 0);
+                         });
                     $scope.posts = posts_arr;
                 })
             }
